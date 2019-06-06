@@ -17,6 +17,10 @@ for file in listdir(data_path):
 
 df = pd.concat(all_data)
 
+df['distance'] = pd.to_numeric(df['distance'])
+df = df.sort_values(by = 'distance',axis=0)
+
+
 
 
 # # Filtering unknown tags
@@ -34,6 +38,4 @@ data.columns = ['uuid', 'distance', 'rssi']
 
 
 # # Saving data in a file
-
-print(data)
 data.to_csv('data.csv', index = False, header = data.columns)
