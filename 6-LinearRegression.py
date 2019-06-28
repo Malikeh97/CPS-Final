@@ -6,6 +6,8 @@ import matplotlib.pyplot as plt
 from sklearn import linear_model
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import PolynomialFeatures
+import pickle
+
 
 # read csv file
 df = pd.read_csv('data_spikes_removed.csv')
@@ -43,6 +45,9 @@ X_test_ = poly.fit_transform(X_test)
 lm = linear_model.LinearRegression()
 model = lm.fit(X_train_, y_train)
 predictions = lm.predict(X_test_)
+
+filename ='finalizedModel.sav'
+pickle.dump(lm ,open(filename ,'wb'))
 
 
 plt.figure(figsize=(16,8))
